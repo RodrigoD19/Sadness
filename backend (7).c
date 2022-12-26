@@ -1,5 +1,5 @@
 
-// se leres isto es gay
+// se leres isto es gay e eu sei
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
