@@ -1,3 +1,3 @@
 # Sadness
-codigo
-Sadness exist in everithing and everyone so lets take advantage of it
+
+Sadness exist in everything and everyone so lets take advantage of it
