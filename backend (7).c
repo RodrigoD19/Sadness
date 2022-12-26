@@ -1,3 +1,5 @@
+
+// se leres isto es gay
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
