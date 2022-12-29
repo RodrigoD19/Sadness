@@ -12,7 +12,7 @@
 
 using namespace std;
 
-bool InfoFicheiro(const std::string &fPath,term::Window& t,int po){
+bool InfoFicheiro(const std::string &fPath,term::Window& t,int po, Reservva& a){
     t.clear();
     // t<<fPath<<"\n";
     ifstream ficheiro(fPath, ios::in);
@@ -112,7 +112,7 @@ bool InfoFicheiro(const std::string &fPath,term::Window& t,int po){
                     uwu.clear();
                     nome="";
                     saude=peso=tempo_vida= -1;
-                }} else{ VerificaComandos(t,linha);}
+                }} else{ VerificaComandos(t,linha,a);}
             t<<"\nPrima enter para ver o proximo comando";
             t.getchar();
             t.clear();
@@ -150,7 +150,7 @@ int isNumber(const string& Word){
 
 }
 
-int VerificaComandos(term::Window& t,const string& comandos){
+int VerificaComandos(term::Window& t,const string& comandos,Reserva &a){
 
     int verify,coloalea,linhalea ,v2,v3,v4,v5,va,x,y;
     string First,Second,Third,Fourth,Fifth,Auxiliar;
@@ -168,7 +168,7 @@ int VerificaComandos(term::Window& t,const string& comandos){
     v5= isNumber(Fifth);
 
 
-   switch (verify){
+    switch (verify){
         case -1: t<<"comando invalido";
             return -1;
         case 1:{
@@ -177,7 +177,9 @@ int VerificaComandos(term::Window& t,const string& comandos){
                 t << "acabou de acrescentar um animal do genero "<<Second<<" na linha "<<Third<<" coluna "<<Fourth ;
                 x=stoi(Third);
                 y=stoi(Fourth);
-                //Animais a(Second,x,y,R);
+                const char *p=Second.c_str();
+                a.addanimal(x,y,p[0],t);
+                t<< "Adicionei um animal";
                 break;
             }
             if(Third == "" && Second != ""){
@@ -193,7 +195,7 @@ int VerificaComandos(term::Window& t,const string& comandos){
             if(v2 !=1){t<< "possuis valores mal posicionados";break;}
             if(Second != ""){
                 t << "Vou eliminar o animal com o id"<<Second ;
-                 break;
+                break;
             }
             else {
                 t << "Erro ao tentar matar animal he is a god and cannot be killed" ;
