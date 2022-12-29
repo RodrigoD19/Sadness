@@ -6,7 +6,7 @@
 #define TRABALHOP_ALIMENTOS_H
 #include <iostream>
 class Alimentos{
-std::string tipo;
+char tipo;
 std::string cheiro;
 int validade;
 int tox;
@@ -14,13 +14,13 @@ int nut;
 int posx,posy;
 int id;
 public:
-    Alimentos() {
-std::cout<<"A criar alimentos";
-    }
+    Alimentos(int posX,int posY,char p);
+    int getPosX();
+    int getPosY();
+    char gettipo();
 
-    ~Alimentos() {
 
-    }
+    ~Alimentos() ;
 
 };
 
