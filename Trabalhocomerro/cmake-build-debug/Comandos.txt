@@ -1,0 +1,18 @@
+animal canguru
+kill 15 18
+kill 32
+kill 23 16 17
+food cenoura
+feedid 31 15 3
+feed 16 17 8 1 2
+nofood 5
+empty
+empty 46 17
+see 14 19
+n 5 2
+n 19
+anim 10
+visanim
+store Reserva1
+restore Reserva1 Reserva2
+slide up 15 9

@@ -1,0 +1,3 @@
+C:/Users/joaom/OneDrive/Ambiente de Trabalho/ISEC/2_ANO/POO/Trabalhocomerro/cmake-build-debug/CMakeFiles/TrabalhoP.dir
+C:/Users/joaom/OneDrive/Ambiente de Trabalho/ISEC/2_ANO/POO/Trabalhocomerro/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/joaom/OneDrive/Ambiente de Trabalho/ISEC/2_ANO/POO/Trabalhocomerro/cmake-build-debug/CMakeFiles/rebuild_cache.dir
