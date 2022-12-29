@@ -168,28 +168,16 @@ int VerificaComandos(term::Window& t,const string& comandos){
     v5= isNumber(Fifth);
 
 
-    switch (verify){
+   switch (verify){
         case -1: t<<"comando invalido";
             return -1;
         case 1:{
             if(v2==1 || (v2 == 0 && (v3!=1 || v4!=1)) ){t<<"possuis valores mal posicionados";break;}
-            if(Second == ""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Third != "" && Fourth == ""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fifth != ""){
-                t << "Erro,sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Fourth != "" && Fifth == ""){
                 t << "acabou de acrescentar um animal do genero "<<Second<<" na linha "<<Third<<" coluna "<<Fourth ;
                 x=stoi(Third);
                 y=stoi(Fourth);
-                Animais a(Second,x,y);
+                //Animais a(Second,x,y,R);
                 break;
             }
             if(Third == "" && Second != ""){
@@ -203,10 +191,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 2:{
             if(v2 !=1){t<< "possuis valores mal posicionados";break;}
-            if (Second == ""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
             if(Second != ""){
                 t << "Vou eliminar o animal com o id"<<Second ;
                  break;
@@ -218,14 +202,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 3:{
             if(v2!=1 || v3!=1){t<< "possuis valores  mal posicionados";break;}
-            if(Second==""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fourth !=""){
-                t << "Erro,sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Third!=""){
                 t << "Irei eliminar o animal na linha "<<Second<<"  coluna "<<Third ;
                 break;
@@ -237,22 +213,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 4:{
             if(v2!=0 || (v3!=1 && v4!=1)){t<< "possuis valores mal posicionados";break;}
-            if(Fifth != ""){//Argumentos a mais no comando
-                t << "Erro,sintaxe (muitos argumentos)!" ;
-                break;
-            }
-            if (Second==""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Third != "" && Fourth == ""){
-                t << "Erro,sintaxe do comando invalida!" ;
-                break;
-            }
-            if(Third!="" && Fourth == ""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
             if(Third=="" && Second !=""){
                 t << "Adicionando alimento aleatoriamente na linha "<<linhalea<<" coluna"<< coloalea ;
                 break;
@@ -269,14 +229,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 5:{
             if(v2!=1 || v3!=1 || v4!= 1 || v5!=1){t<< "possuis valores mal posicionados";break;}
-            if(Second==""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Auxiliar!=""){
-                t << "Erro,sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Auxiliar=="" && Fifth!="" ){
                 t<< "Alimentando o animal na linha "<< Second<< " coluna " << Third << " que possuem " << Fourth<< " pontos nutritivos e "<< Fifth << "de toxicidade";
                 break;
@@ -288,14 +240,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 6:{
             if(v2!=1 || v3!=1 || v4!= 1 ){t<< "possuis valores mal posicionados";break;}
-            if(Second==""){
-                t << "Erro,sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Auxiliar!=""){
-                t << "Erro,sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Fourth!="" && Fifth=="" ){
                 t<< "Alimentando o animal com "<< Second<< "de id que possuem" << Third<< "pontos nutritivos e "<< Fourth << "de toxicidade";
                 break;
@@ -307,15 +251,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 7:{
             if(v2!=1 || v3!= 1){t<< "possuis valores mal posicionados";break;}
-            if(Second==""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fourth == ""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
-
             if(Third!="" && Fourth== ""){
                 t << "Removendo a comida na linha "<<Second<< " coluna "<<Third  ;
                 break;
@@ -331,17 +266,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 8:{
             if(v2!=1 || v3!= 1){t<< "possuis valores mal posicionados";break;}
-
-            if(Second==""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fourth!=""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
-
-
             if(Fourth=="" && Third!=""){
                 t << "Acabou de eliminar o que estava na linha"<< Second << " coluna " << Third  ;
                 break;
@@ -353,15 +277,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 9:{
             if(v2!=1 || v3!= 1){t<< "possuis valores mal posicionados";break;}
-
-            if(Second=="" || (Second!="" && Third=="")){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fourth!=""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Fourth=="" && Third!=""){
                 t << "Adquirindo informacao sobre a linha"<< Second << " coluna " << Third  ;
                 break;
@@ -373,16 +288,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 10:{
             if(v2!=1 ){t<< "possuis valores mal posicionados";break;}
-
-            if(Second==""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-
-            }
-            if(Third!=""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second!="" && Third==""){
                 t << "Adquirindo informacao sobre o id"<< Second  ;
                 break;
@@ -394,11 +299,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 11 :{
             if(v2!=1 || v3!= 1){t<< "possuis valores mal posicionados";break;}
-
-            if(Fourth!=""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second != "" && Third == ""){
                 t << "Ira avançar "<<Second<< " instantes" ;
                 break;
@@ -440,15 +340,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 14:{
             if(v2!=0){t<< "possuis valores mal posicionados";break;}
-
-            if(Second == ""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Third!= ""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second!= "" && Third ==""){
                 t << "Guardando reserva "  ;
                 break;
@@ -457,14 +348,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 15:{
             if(v2!=0){t<< "possuis valores mal posicionados";break;}
-            if(Second == ""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Third!= ""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second!= "" && Third ==""){
                 t << "Restaurando reserva ..." ;
                 break;
@@ -472,14 +355,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 16:{
             if(v2!=0){t<< "possuis valores mal posicionados";break;}
-            if(Second == ""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Third!= ""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second!= "" && Third ==""){
                 t << "A usar reserva guardada"  ;
                 break;
@@ -487,15 +362,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
         }
         case 17:{
             if(v2!=0 || v3!=1 || v4!= 1){t<< "possuis valores mal posicionados";break;}
-
-            if(Second == ""){
-                t << "Erro de sintaxe (poucos argumentos)!" ;
-                break;
-            }
-            if(Fifth!= ""){
-                t << "Erro de sintaxe (muitos argumentos)!" ;
-                break;
-            }
             if(Second!= "" && Fifth ==""){
                 t << "Movendo  "<< Third<< " linhas e "<< Fourth <<" colunas com orientacao " << Second  ;
                 break;
