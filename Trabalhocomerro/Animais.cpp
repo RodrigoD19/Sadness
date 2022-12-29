@@ -6,18 +6,13 @@
 #include "Reserva.h"
 
 
-Animais::Animais(int Vida, int Fome, int TVidaa, int Peso, int ID, char Sigla) {
-    std::string teste;
+Animais::Animais(int posX,int posY, char letra) {
 
-    saude = Vida;
-    fome = Fome;
-    tvida = TVidaa;
-    peso = Peso;
-    id = ID;
-    sig = Sigla;
-    posx =2;
-            //rand()%(500-16 + 1) + 16;
-    posy =0;
+    posx =posX;
+    posy = posY;
+    sig=letra;
+  
+    //std::cout<<a.pa();
             //rand()%(500-16 + 1) + 16;
    // t << "Criei o animal "<<Sigla<<"\n";
   //  t << "INTRODUZA ALGUMA COISA\n";
