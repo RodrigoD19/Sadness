@@ -372,9 +372,6 @@ int VerificaComandos(term::Window& t,const string& comandos){
             break;
         }
     }
-
-
-
     return 0;
 }
 
