@@ -8,23 +8,11 @@
 #include <sstream>
 
 Reserva::Reserva() {
-    int randomCol,randomLin;
+     int randomCol,randomLin;
     randomCol = rand()%(500-16 + 1) + 16;//Vai gerar um numero aleatorio entre 16-500
     randomLin = rand()%(500-16 + 1) + 16;
-    ncol=100;
-    nlinhas=100;
-    c= new char **[100];
-    for(int i=0;i<100;i++){
-        c[i]=new char*[100];
-        for(int j=0;j<100;j++){
-            c[i][j]=new char[3];
-            c[i][j]="-";
-        }
-    }
-    /*c[0][0]="A";
-    c[8][10]="BA";
-    c[10][7]="C";
-    c[99][99]="R";*/
+    ncol=randomCol;
+    nlinhas=randomLin;
 }
 
 Reserva::~Reserva() {
@@ -39,17 +27,7 @@ Reserva::~Reserva() {
     delete [] c;
 }
 
-char Reserva::printreserva(term::Window& tl,int x,int y) {
-    tl.clear();
-    for(int i=x;i<x+10;i++){
-        for(int j=y;j<y+20;j++){
-            tl<<c[i][j]<<" ";
-        }
-        tl<<"\n";
-    }
 
-    return 0;
-}
 
 int Reserva::getnumlinhas() {
     return nlinhas;
@@ -60,13 +38,10 @@ int Reserva::getnumcolunas() {
 }
 
 int Reserva::addanimal(int x, int y,char sig,Animais& a) {
-    if(x>nlinhas||y>ncol){return -1;}
+  if(x>nlinhas||y>ncol){return -1;}
     nanimais++;
-    char *p= new char[1];
-    strcpy(p,&sig);
-    c[x][y]=p;
-    an.push_back(&a);
-    delete p;
+    an.push_back(new Animais (x,y,sig));
+  //  t<<"Adicionei o animal com a letra"<< an[0]->getSigla();
     return 0;
 }
 
@@ -88,37 +63,42 @@ char  Reserva::search(int x, int y) {
 char Reserva::printreserva2(Window &tl, int x, int y)
 {   int it=0;
     tl.clear();
-    //  int **p=new int * [2];
-    //  p[0]=new int[nanimais+1];//new int [animais+alimentos+1]
-    //  p[1]=new int [nanimais+1];
-    // char *a=new char[nanimais];
-    //  askpositions(p,a);
+    int nit;
+    if(nanimais>nalimentos){nit=nanimais;}
+    else
+    {
+        nit=nalimentos;
+    }
     for(int i=x;i<x+10;i++){
         for(int j=y;j<y+20;j++){
-            for(int f=0;f<nanimais;f++){//nanimais+ nalimentos
-                if(i==an[f]->getPosX()&&j==an[f]->getPosY()){
-                    tl<<an[f]->getSigla();
-                    it=1;
-                }
-                /*if(i==al[f]->getPosX()&&j==al[f]->getPosY()){
-                    tl<<al[f]->getSigla();
-                    it=1;
-                }*/
+        for(int f=0;f<nit;f++){//nanimais+ nalimentos
+
+            if(i==an[f]->getPosX()&&j==an[f]->getPosY()){
+            //    tl<<"TA aqui";
+                tl<<an[f]->getSigla();
+                it=1;
             }
-            if(it==0){
-                tl<<"- " ;}
-            else{
-                it=0;
-                tl<<" ";
-            }
+            if(i==al[f]->getPosX()&&j==al[f]->getPosY()){
+                tl<<al[f]->gettipo();
+                it=1;}
+
+        }
+        if(it==0){
+            tl<<"- " ;}
+        else{
+        it=0;
+        tl<<" ";
+        }
         }
         tl<<"\n";
     }
 
-    //delete []p[0];
-    //delete []p[1];
-    //delete []p;
-    //delete[]a;
+}
+
+int Reserva::addalimento(int x, int y, char sig, Window &t) {
+    if(x>nlinhas||y>ncol){return -1;}
+    nalimentos++;
+    al.push_back(new Alimentos(x,y,sig));
     return 0;
 }
 
