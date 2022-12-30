@@ -1,6 +1,6 @@
 //
 // Created by rodri on 22/11/2022.
-//o
+//
 
 #include "Reserva.h"
 #include <string>
@@ -8,15 +8,17 @@
 #include <sstream>
 
 Reserva::Reserva() {
-     int randomCol,randomLin;
+    int randomCol,randomLin;
     randomCol = rand()%(500-16 + 1) + 16;//Vai gerar um numero aleatorio entre 16-500
     randomLin = rand()%(500-16 + 1) + 16;
     ncol=randomCol;
     nlinhas=randomLin;
+
+
 }
 
 Reserva::~Reserva() {
-    std::cout<<"\nReserva Destruida\n";
+std::cout<<"\nReserva Destruida\n";
 
     for(int i=0;i<100;i++){
         for(int j=0;j<100;j++){
@@ -28,7 +30,6 @@ Reserva::~Reserva() {
 }
 
 
-
 int Reserva::getnumlinhas() {
     return nlinhas;
 }
@@ -37,8 +38,8 @@ int Reserva::getnumcolunas() {
     return ncol;
 }
 
-int Reserva::addanimal(int x, int y,char sig,Animais& a) {
-  if(x>nlinhas||y>ncol){return -1;}
+int Reserva::addanimal(int x, int y,char sig, Window &t) {
+    if(x>nlinhas||y>ncol){return -1;}
     nanimais++;
     an.push_back(new Animais (x,y,sig));
   //  t<<"Adicionei o animal com a letra"<< an[0]->getSigla();
@@ -47,18 +48,6 @@ int Reserva::addanimal(int x, int y,char sig,Animais& a) {
 
 
 
-char  Reserva::search(int x, int y) {
-    int na=0;
-    char a;
-    for(int i=0;i<nanimais;i++){
-        if(an[i]->getPosX()==x&&an[i]->getPosY()==y){
-            a=an[i]->getSigla();
-        }
-    }
-
-
-    return a;
-}
 
 char Reserva::printreserva2(Window &tl, int x, int y)
 {   int it=0;
@@ -78,9 +67,9 @@ char Reserva::printreserva2(Window &tl, int x, int y)
                 tl<<an[f]->getSigla();
                 it=1;
             }
-            if(i==al[f]->getPosX()&&j==al[f]->getPosY()){
+         /*   if(i==al[f]->getPosX()&&j==al[f]->getPosY()){
                 tl<<al[f]->gettipo();
-                it=1;}
+                it=1;}*/
 
         }
         if(it==0){
@@ -93,13 +82,11 @@ char Reserva::printreserva2(Window &tl, int x, int y)
         tl<<"\n";
     }
 
-}
-
-int Reserva::addalimento(int x, int y, char sig, Window &t) {
-    if(x>nlinhas||y>ncol){return -1;}
-    nalimentos++;
-    al.push_back(new Alimentos(x,y,sig));
-    return 0;
+    //delete []p[0];
+    //delete []p[1];
+    //delete []p;
+    //delete[]a;
+   // return 0;
 }
 
 int Reserva::askpositions(int **a,char *b) {
@@ -113,6 +100,14 @@ int Reserva::askpositions(int **a,char *b) {
 
     return 0;
 }
+
+int Reserva::addalimento(int x, int y, char sig, Window &t) {
+    if(x>nlinhas||y>ncol){return -1;}
+    nalimentos++;
+    al.push_back(new Alimentos(x,y,sig));
+    return 0;
+}
+
 
 
 
