@@ -3,7 +3,6 @@
 //
 
 #include "header.h"
-#include "Animais.h"
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
@@ -12,9 +11,9 @@
 
 using namespace std;
 
-bool InfoFicheiro(const std::string &fPath,term::Window& t,int po, Reservva& a){
+bool InfoFicheiro(const std::string &fPath,term::Window& t,int po,Reserva& a){
     t.clear();
-    // t<<fPath<<"\n";
+   // t<<fPath<<"\n";
     ifstream ficheiro(fPath, ios::in);
     string linha,nome;
     int saude, peso,tempo_vida;
@@ -24,95 +23,95 @@ bool InfoFicheiro(const std::string &fPath,term::Window& t,int po, Reservva& a){
     if(ficheiro.is_open()){//Se o ficheiro foi aberto corretamente, então...
         while(getline(ficheiro,linha)) {
             if(po==1){
-                istringstream uwu (linha);
-                t <<"Comando no ficheiro: "<<linha<<"\n";
-                if(linha.empty()){
-                    t<<"Nao ha mais comandos";
-                    break;
+            istringstream uwu (linha);
+            t <<"Comando no ficheiro: "<<linha<<"\n";
+            if(linha.empty()){
+                t<<"Nao ha mais comandos";
+                break;
+            }
+            if(linha[0]=='S') {
+                //Caso o comando seja S => Seja um comando para a saude inicial dos animais
+                uwu >> nome;
+                uwu >> saude;
+                if (saude <= 1) {
+                    t << "saude do animal invalida!\n\n";
                 }
-                if(linha[0]=='S') {
-                    //Caso o comando seja S => Seja um comando para a saude inicial dos animais
-                    uwu >> nome;
-                    uwu >> saude;
-                    if (saude <= 1) {
-                        t << "saude do animal invalida!\n\n";
+                else {
+                    if (nome == "SCoelho") {
+                        t << "vou adicionar o valor " << saude << " como vida do coelho\n";
+                    } else if (nome=="SOvelha") {
+                        t << "vou adicionar o valor " << saude << " como vida do Ovelha\n";
+                    } else if (nome == "SLobo") {
+                        t << "vou adicionar o valor " << saude << " como vida do Lobo\n";
+                    } else if (nome == "SCanguru") {
+                        t << "vou adicionar o valor " << saude << " como vida do Canguru\n";
                     }
+                        //Caso nao seja nehum dos animais acima referidos
                     else {
-                        if (nome == "SCoelho") {
-                            t << "vou adicionar o valor " << saude << " como vida do coelho\n";
-                        } else if (nome=="SOvelha") {
-                            t << "vou adicionar o valor " << saude << " como vida do Ovelha\n";
-                        } else if (nome == "SLobo") {
-                            t << "vou adicionar o valor " << saude << " como vida do Lobo\n";
-                        } else if (nome == "SCanguru") {
-                            t << "vou adicionar o valor " << saude << " como vida do Canguru\n";
-                        }
-                            //Caso nao seja nehum dos animais acima referidos
-                        else {
-                            t << "animal nao encontrado na reserva\n\n";
-                        }
+                        t << "animal nao encontrado na reserva\n\n";
                     }
                 }
-                else if(linha[0]=='P'){
-                    //Caso o comando seja P => Seja um comando para o peso inicial dos animais
-                    uwu >> nome;
-                    uwu >> peso;
-                    // cout<<"NEVER GONNA GIVE YOU UP!"<<endl;
-                    if(peso <= 1){
-                        t << "peso do animal invalido\n\n";
-                    }
-                    else{
-                        if(nome=="PCoelho"){
-                            t << "vou adicionar o valor "<<peso<<" como peso do coelho\n";
-                        }
-                        else if(nome=="POvelha"){
-                            t << "vou adicionar o valor "<<peso<<" como peso do ovelha\n";
-                        }
-                        else if(nome=="PLobo"){
-                            t << "vou adicionar o valor "<<peso<<" como peso do lobo\n";
-                        }
-                        else if(nome=="PCanguru"){
-                            t << "vou adicionar o valor "<<peso<<" como peso do canguru\n";
-                        }
-                        else{
-                            //Caso nao seja nehum dos animais acima referidos
-                            t << "Erro, animal nao encontrado na reserva\n\n";
-                        }
-                    }
-                }
-                else if(linha[0]=='V') {
-                    //Caso o comando seja V => Seja um comando para o tempo de vida dos animais
-                    uwu >> nome;
-                    uwu >> tempo_vida;
-                    if (tempo_vida <= 1) {
-                        t << "peso do animal invalido\n\n";
-                    }
-                    else{
-                        if (nome == "VCoelho") {
-                            t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do coelho\n";
-                        } else if (nome == "VOvelha") {
-                            t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do ovelha\n";
-                        } else if (nome == "VLobo") {
-                            t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do lobo\n";
-                        } else if (nome == "VCanguru") {
-                            t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do canguru\n";
-                        }
-                            //Caso nao seja nehum dos animais acima referidos
-                        else {
-                            t << "Erro, animal nao encontrado na reserva\n\n";
-                        }
-                    }
+            }
+            else if(linha[0]=='P'){
+                //Caso o comando seja P => Seja um comando para o peso inicial dos animais
+                uwu >> nome;
+                uwu >> peso;
+                // cout<<"NEVER GONNA GIVE YOU UP!"<<endl;
+                if(peso <= 1){
+                    t << "peso do animal invalido\n\n";
                 }
                 else{
-                    //Caso nao seja um comando de status inicial de um animal, entao
-                    t << "Comando invalido no ficheiro.\n";
+                    if(nome=="PCoelho"){
+                        t << "vou adicionar o valor "<<peso<<" como peso do coelho\n";
+                    }
+                    else if(nome=="POvelha"){
+                        t << "vou adicionar o valor "<<peso<<" como peso do ovelha\n";
+                    }
+                    else if(nome=="PLobo"){
+                        t << "vou adicionar o valor "<<peso<<" como peso do lobo\n";
+                    }
+                    else if(nome=="PCanguru"){
+                        t << "vou adicionar o valor "<<peso<<" como peso do canguru\n";
+                    }
+                    else{
+                        //Caso nao seja nehum dos animais acima referidos
+                        t << "Erro, animal nao encontrado na reserva\n\n";
+                    }
                 }
+            }
+            else if(linha[0]=='V') {
+                //Caso o comando seja V => Seja um comando para o tempo de vida dos animais
+                uwu >> nome;
+                uwu >> tempo_vida;
+                if (tempo_vida <= 1) {
+                    t << "peso do animal invalido\n\n";
+                }
+                else{
+                    if (nome == "VCoelho") {
+                        t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do coelho\n";
+                    } else if (nome == "VOvelha") {
+                        t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do ovelha\n";
+                    } else if (nome == "VLobo") {
+                        t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do lobo\n";
+                    } else if (nome == "VCanguru") {
+                        t << "vou adicionar o valor " << tempo_vida << " como tempo de vida do canguru\n";
+                    }
+                        //Caso nao seja nehum dos animais acima referidos
+                    else {
+                        t << "Erro, animal nao encontrado na reserva\n\n";
+                    }
+                }
+            }
+            else{
+                //Caso nao seja um comando de status inicial de um animal, entao
+                t << "Comando invalido no ficheiro.\n";
+            }
 
-                if(uwu.fail()){//Verificação para caso o stringstream falhe na copia da informação
-                    uwu.clear();
-                    nome="";
-                    saude=peso=tempo_vida= -1;
-                }} else{ VerificaComandos(t,linha,a);}
+            if(uwu.fail()){//Verificação para caso o stringstream falhe na copia da informação
+                uwu.clear();
+                nome="";
+                saude=peso=tempo_vida= -1;
+            }} else{ VerificaComandos(t,linha,a);}
             t<<"\nPrima enter para ver o proximo comando";
             t.getchar();
             t.clear();
@@ -376,5 +375,3 @@ int VerificaComandos(term::Window& t,const string& comandos,Reserva &a){
     }
     return 0;
 }
-
-
