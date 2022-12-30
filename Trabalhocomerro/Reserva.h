@@ -7,12 +7,13 @@
 #include "Animais.h"
 #include "Terminal.h"
 class Reserva {
-    int nlinhas, ncol;
-    int nanimais, nalimentos;
-    std::vector<Alimentos*>al;
-    std::vector<Animais*>an;
+    char ***c;
+ int nlinhas, ncol;
+ int nanimais, nalimentos;
+std::vector<Alimentos*>al;
+std::vector<Animais*>an;
 public:
-   Reserva();
+    Reserva();
     ~Reserva();
     int getnumlinhas();
     int getnumcolunas();
@@ -21,6 +22,7 @@ public:
     int killanimal();
     char printreserva2(term::Window& tl,int x,int y);
     int askpositions(int **a,char *b);
+
 
 };
 
